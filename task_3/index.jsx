@@ -1,11 +1,14 @@
-import { Fragment, memo } from 'react';
+import { Fragment, memo, useMemo } from 'react';
 
 const MainComponent = ({
     user = { name: 'unknown', age: null } // default value for `props.user`
 }) => {
+
+    const userMemoProps = useMemo(() => user, [user.name, user.age]);
+
     return (
         <Fragment>
-            <ChildComponent user={user} />
+            <ChildComponent user={userMemoProps} />
         </Fragment>
     );
 };
